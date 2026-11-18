@@ -1,45 +1,47 @@
-list = []
-previous_list = []
+robot = {
+    "name": "Atlas",
+    "model": "RX-7",
+    "battery": 85,
+    "speed": 6,
+    "mode": "exploration"
+}
+
+robot["battery"] = 100
+robot["color"] = "blue"
+robot.pop("mode")
+
 while True:
-    guess = input ("1. Add Item\n"
-           "2. Remove Item\n"
-           "3. Display List\n"
-           "4. Undo Item\n"
-           "5. Exit\n"
-    )
-    if guess == "1":
-        previous_list = list.copy()
-        item_add = input ("What Item would you like to add!\n")
-        list.append(item_add)
+    print("\n1. View All Settings")
+    print("2. Look Up a Setting")
+    print("3. Change a Setting")
+    print("4. Add a Setting")
+    print("5. Exit")
 
-    elif guess == "2":
-        if len(list) == 0:
-            print("Your list is empty!")
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        print("Total settings:", len(robot))
+        for key, value in robot.items():
+            print(key, ":", value)
+
+    elif choice == "2":
+        lookup_key = input("Enter the key to look up: ")
+        print("Result:", robot.get(lookup_key, "Setting not found"))
+
+    elif choice == "3":
+        change_key = input("Enter the existing key you want to change: ")
+        if change_key in robot:
+            robot[change_key] = input("Enter the new value: ")
+            print("Setting updated!")
         else:
-            print("Current List:")
-            for index, item in enumerate(list):
-                print(index, ":", item)
+            print("Error: That key does not exist.")
 
-            guess2 = int(input("What Item number from the list would you like to remove!\n"))
+    elif choice == "4":
+        new_key = input("Enter the new key name: ")
+        robot[new_key] = input("Enter the value for this key: ")
+        print("New setting added")
 
-            previous_list = list.copy()
-
-            if 0 <= guess2 < len(list):
-                list.pop(guess2)
-            else:
-                print("Invalid index number.")
-
-
-    elif guess == "3":
-        print(f"list: {list}")
-        for index, item in enumerate(list):
-            print(index, ":", item)
-
-    elif guess == "4":
-        list = previous_list.copy()
-        print("Undo done")
-
-    if guess == "5":
+    elif choice == "5":
         exit()
-
-
+    else:
+        print("Invalid choice, Please enter a number from 1 to 5")
