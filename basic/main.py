@@ -14,7 +14,7 @@ while True:
 
     elif guess == "2":
         if len(list) == 0:
-            print("Your list is currently empty!")
+            print("Your list is empty!")
         else:
             print("Current List:")
             for index, item in enumerate(list):
@@ -27,7 +27,7 @@ while True:
             if 0 <= guess2 < len(list):
                 list.pop(guess2)
             else:
-                print("Wrong!!!.")
+                print("Invalid index number.")
 
 
     elif guess == "3":
