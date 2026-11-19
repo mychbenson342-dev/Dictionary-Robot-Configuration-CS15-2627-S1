@@ -29,7 +29,7 @@ while True:
         print("Result:", robot.get(lookup_key, "Setting not found"))
 
     elif choice == "3":
-        change_key = input("Enter the existing key you want to change: ")
+        change_key = input("Enter the key you want to change: ")
         if change_key in robot:
             robot[change_key] = input("Enter the new value: ")
             print("Setting updated!")
